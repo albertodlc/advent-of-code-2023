@@ -1,4 +1,3 @@
-const readLine = require('readline');
 const f = require('fs');
 let file = './1/data.txt';
 
@@ -33,6 +32,18 @@ function convertSpelledToDigits(line){
     return line;
 }
 
+function flattenDigitArray(digitsArray){
+    const auxArray = [];
+
+    for(const element of digitsArray) {            
+        const aux = element.split("");
+
+        auxArray.push( aux );
+    }
+
+    return auxArray.flat();
+}
+
 try {
     const data = f.readFileSync(file, 'utf8');
     const dataArray = data.split("\r\n");
@@ -40,47 +51,34 @@ try {
     for(const text of dataArray){
         const currentLine = {
             counter: counter++,
-            initialText: text
+            initialText: text,
+            spelledText: convertSpelledToDigits(text),
+            currentSum: 0
         };
     
-        let spelledText = convertSpelledToDigits(text);
+        currentLine.digitsArray = currentLine.spelledText.match(/\d+/g)
+        currentLine.flattenedDigitsArray = flattenDigitArray(currentLine.digitsArray);
     
-        currentLine.spelledText = spelledText;
-    
-        let digits = spelledText.match(/\d+/g);
-    
-        currentLine.digitsArray = digits;
-        
-        const auxArray = [];
-        for(const element of digits) {            
-            const aux = element.split("");
-    
-            auxArray.push(aux);
+        if( currentLine.flattenedDigitsArray.length === 1 ){
+            currentLine.finalNum = Number(currentLine.flattenedDigitsArray[0] + currentLine.flattenedDigitsArray[0]);
         }
     
-        const flattenArray = auxArray.flat();
-    
-        currentLine.flattenedDigitsArray = flattenArray;
-    
-        let currentNum = null;
-        if( flattenArray.length === 1 ){
-            currentNum = flattenArray[0] + flattenArray[0];
-            sum += Number(flattenArray[0] + flattenArray[0]);
+        if( currentLine.flattenedDigitsArray.length > 1 ){
+            currentLine.finalNum = Number(currentLine.flattenedDigitsArray[0] + currentLine.flattenedDigitsArray[currentLine.flattenedDigitsArray.length - 1]);
         }
-    
-        if( flattenArray.length > 1 ){
-            currentNum = flattenArray[0] + flattenArray[flattenArray.length - 1];
-            sum += Number(flattenArray[0] + flattenArray[flattenArray.length - 1]);
-        }
-    
-        currentLine.finalNum = currentNum;
-        currentLine.currentSum = sum;
     
         jsonData.push(currentLine);
     }
 } catch (err) {
     console.error(err);
 }
+
+// SUMA
+for(const num of jsonData){
+    sum += num.finalNum;
+}
+
+console.log(sum);
 
 f.writeFile("./1/output.json", JSON.stringify(jsonData), function(err) {
     if (err) {
