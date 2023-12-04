@@ -1,11 +1,12 @@
 {
+  "type": "module",
   "dependencies": {
     "fs": "^0.0.1-security",
     "readline": "^1.3.0"
   },
   "scripts": {
-    "exerciseOne": "node ./1/main.js",
-    "exerciseTwo": "node ./2/main.js"
-
+    "exerciseOne": "node ./day_1/main.js",
+    "exerciseTwo": "node ./day_2/main.js",
+    "exerciseThree": "node ./day_3/main.js"
   }
 }

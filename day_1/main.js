@@ -1,5 +1,5 @@
 const f = require('fs');
-let file = './1/data.txt';
+let file = './day_1/data.txt';
 
 let sum = 0;
 let jsonData = [];

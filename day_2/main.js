@@ -1,5 +1,5 @@
 const f = require('fs');
-let file = './2/data.txt';
+let file = './day_2/data.txt';
 
 const RED_CUBES = 12;
 const GREEN_CUBES = 13;
