@@ -6,7 +6,16 @@
   },
   "scripts": {
     "exerciseOne": "node ./day_1/main.js",
+    "testExerciseOne": "node --inspect ./day_1/main.js",
     "exerciseTwo": "node ./day_2/main.js",
-    "exerciseThree": "node ./day_3/main.js"
+    "testExerciseTwo": "node --inspect ./day_2/main.js",
+    "exerciseThree": "node ./day_3/main.js",
+    "testExerciseThree": "node --inspect ./day_3/main.js",
+    "exerciseFour": "node ./day_4/main.js",
+    "testExerciseFour": "jest ./day_4/main.test.js"
+
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
