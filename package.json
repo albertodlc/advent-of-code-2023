@@ -13,6 +13,9 @@
     "testExerciseThree": "node --inspect ./day_3/main.js",
     "exerciseFour": "node ./day_4/main.js",
     "testExerciseFour": "jest ./day_4/main.test.js",
+
+    "exercise6": "node ./day_6/main.js",
+
     "exercise15": "node ./day_15/main.js"
 
   },
